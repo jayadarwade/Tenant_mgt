@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Tenant Management</title>
+  <meta name="description" content="Our first page">
+  <meta name="keywords" content="html tutorial template">
+
+
+  <style>
+    .dataCustM {
+      width: 80%;
+      margin: 0 auto 50px;
+      padding: 10px 0 50px;
+    }
+
+    .dataCustM thead {
+      background: #ffc107 !important;
+    }
+
+    .dataCustM .paginate_button {
+      color: #000;
+      padding: 0 5px;
+    }
+
+    .dataCustM .paginate_button.current {
+      background: #28a745;
+      border-radius: 5px;
+      padding: 4px 10px;
+      color: #fff;
+    }
+
+    .dataCustM div#example_length {
+      width: 50%;
+      float: left;
+    }
+
+    .dataCustM a {
+      text-decoration: none;
+    }
+
+    .dataCustM div#example_info {
+      width: 50%;
+      float: left;
+    }
+
+    .dataCustM div.dataTables_wrapper div.dataTables_paginate {
+      margin: 0;
+      white-space: nowrap;
+      text-align: right;
+      width: 50%;
+      float: right;
+      padding-top: .85em;
+    }
+  </style>
+
+</head>
+
+<body>
+  <%- include("./partials/header2.ejs") %>
+    <div class="container">
+      <h1 class="mt-3 text-center">Let's find a car</h1>
+      <div class="row mt-5" style="margin-bottom: 50px">
+        <div class="col-md-6 m-auto">
+          <div class="card card-body ">
+            <form action="/vin" method="POST">
+              <div class="form-group">
+                <div>
+                  <%- include("./partials/messages") %>
+                    <label for="vinNumber" class="bg-warning p-1 btn-block">
+                      <h5>Search by VIN Number</h5>
+                    </label>
+                    <input type="test" name="vinNumber" class="form-control" placeholder="Enter VIN number" />
+                </div>
+                <div>
+                  <button type="submit" class="btn btn-success btn-block mt-2"
+                    style="padding-left: 80px; padding-right: 80px;"> Search</button>
+                </div>
+              </div>
+            </form>
+            <h5 class="mb-3 text-center">OR</h5>
+            <form action="/plate" method="POST">
+              <div class="form-group">
+                <div>
+                  <%- include("./partials/checks") %>
+                    <label for="plate" class="bg-warning p-1 btn-block">
+                      <h5>Search by License Plate & State</h5>
+                    </label>
+                    <input type="test" id="plate" name="plate" class="form-control" placeholder="Enter license plate" />
+                </div>
+                <div>
+                  <button type="submit" name="plateb" class="btn btn-success btn-block mt-2"
+                    style="padding-left: 80px; padding-right: 80px;">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="dataCustM">
+        <table id="example" class="table table-striped table-bordered" style="width:100%; margin-bottom: 100px;">
+          <thead>
+            <tr>
+              <th>VIN Number</th>
+              <th>Name</th>
+              <th>Year</th>
+              <th>Model</th>
+              <th>Create date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <script>
+      function deleteProduct() {
+        var vin = $("#id_vinNumber").val();
+        $.ajax({
+          url: '/vin',
+          type: "POST",
+          data: { 'vinNumber': vin },
+          success: function (data) {
+            result = data;
+            $('#example' + result);
+            window.render("login.ejs")
+          },
+          error: function (data) {
+            alert("password dose not match");
+          }
+        });
+      }
+      // function ()
+    </script>
+    <%- include("./partials/footer.ejs") %>
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Tenant Management</title>
+    <meta name="description" content="Our first page">
+    <meta name="keywords" content="html tutorial template">
+    <style>
+        .custumfrm {
+            width: 60%;
+            margin: 50px auto;
+            padding: 0 0 0;
+        }
+
+        .custumfrm .formCust {
+            padding: 30px;
+            border: 1px solid #000;
+            border-top: 0;
+            margin-top: -8px;
+        }
+
+        .custumfrm button.editBtn {
+            background: #28a745;
+            color: #fff;
+            border: 1px solid #28a745;
+            border-radius: 3px;
+            font-size: 22px;
+            line-height: 29px;
+            padding: 12px 12px;
+            width: 100%;
+            margin: 20px 0 0;
+        }
+
+        .custumfrm .headingH h1 {
+            font-size: 37px;
+            line-height: 46px;
+            color: #000;
+            text-align: center;
+            background: #f5e625 !important;
+            padding: 15px 10px;
+            /* border: 3px solid #d7d2d2; */
+        }
+
+        .custumfrm .form-control {
+            display: block;
+            width: 100%;
+            height: auto;
+            padding: 10px 15px;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 21px;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .custumfrm .form-control:focus {
+            border-color: #ced4da;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+        }
+
+        .form-section {
+            border: 1px solid #ccc;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .form-section h2 {
+            font-size: 25px;
+            line-height: 30px;
+            color: #000;
+            text-align: center;
+            background: #f8f9fa;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .custumfrm {
+            width: 60%;
+            margin: 50px auto;
+            padding: 0 0 0;
+        }
+
+        .custumfrm .formCust {
+            padding: 30px;
+            border: 1px solid #000;
+            border-top: 0;
+            margin-top: -8px;
+        }
+
+        /* Styling for the heading */
+        .headingH {
+            position: relative;
+            text-align: center;
+            /* Center the text */
+            background: #f5e625;
+            padding: 10px 0;
+            border: 3px solid #d7d2d2;
+        }
+
+        .headingH h1 {
+            font-size: 30px;
+            /* Adjust the size */
+            line-height: 38px;
+            color: #000;
+            margin: 0;
+            display: inline-block;
+        }
+
+        /* Styling for the arrow icon */
+        .headingH h1 a {
+            position: absolute;
+            left: 10px;
+            /* Position the arrow on the left */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #060505;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .headingH h1 a i {
+            font-size: 20px;
+            /* Adjust the size of the arrow */
+        }
+
+        .custumfrm button.editBtn {
+            background: #28a745;
+            color: #fff;
+            border: 1px solid #28a745;
+            border-radius: 3px;
+            font-size: 22px;
+            line-height: 29px;
+            padding: 12px 12px;
+            width: 100%;
+            margin: 20px 0 0;
+        }
+    </style>
+
+    <!-- Include jQuery and jQuery UI for Datepickers -->
+
+</head>
+
+<body>
+    <%- include("./partials/header2.ejs") %>
+        <div class="custumfrm">
+            <form action="/tenant/add" method="post">
+                <div class="headingH">
+                    <h1>
+                        <a href="/dashboard">
+                            <i class="fas fa-arrow-left d-flex"></i> <!-- Left Arrow Icon -->
+                        </a>
+                        Update Tenant
+                    </h1>
+                </div>
+                <div class="form-section">
+                    <h2>Personal Details</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Name:</label>
+                                <input type="text" id="name" class="form-control" value="<%=att.name%>" name="name"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>DOB:</label>
+                                <input type="date" id="dob" class="form-control" value="<%=att.dob%>" name="dob"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Profession:</label>
+                                <select class="form-control" id="profession" value="<%=att.profession%>"
+                                    name="profession" required>
+                                    <option value="Student">Student</option>
+                                    <option value="Employee">Employee</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Upload Profile Photo:</label>
+                                <input type="file" id="profilePhoto" name="profilePhoto" value="<%=att.profile%>"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room Related Details Section -->
+                <div class="form-section">
+                    <h2>Room Related Details</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Room No:</label>
+                                <input type="text" id="roomNo" class="form-control" value="<%=att.roomNo%>"
+                                    name="roomNo" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Join Date:</label>
+                                <input type="date" id="joinDate" class="form-control" value="<%=att.joinDate%>"
+                                    name="joinDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Rent:</label>
+                                <input type="number" id="rent" class="form-control" name="rent" value="<%=att.rent%>"
+                                    required min="0">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>ID Proof:</label>
+                                <input type="file" id="idProof" name="idProof" class="form-control"
+                                    value="<%=att.idProof%>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Status:</label>
+                                <select class="form-control" id="status" name="status" value="<%=att.status%>" required>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <input name="id" value="<%=att._id%>" class="form-control" type="hidden">
+
+                </div>
+                <!-- Submit Button -->
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button class="editBtn">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <%- include("./partials/footer.ejs") %>
+
+            <script>
+                $(function () {
+                    // Initialize datepickers
+                    $("#dob").datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        yearRange: "1900:2024",
+                        dateFormat: "yy-mm-dd",
+                        onSelect: function () {
+                            validateDOB();
+                        }
+                    });
+
+                    $("#joinDate").datepicker({
+                        minDate: 0, // Current date and forward
+                        dateFormat: "yy-mm-dd"
+                    });
+
+                    // Function to validate DOB for age 18+
+                    function validateDOB() {
+                        const dob = new Date($("#dob").val());
+                        const today = new Date();
+                        const age = today.getFullYear() - dob.getFullYear();
+                        if (age < 18 || (age === 18 && today < new Date(today.getFullYear(), dob.getMonth(), dob.getDate()))) {
+                            alert("Tenant must be at least 18 years old.");
+                            $("#dob").val("");
+                        }
+                    }
+                });
+            </script>
+</body>
+
+</html>

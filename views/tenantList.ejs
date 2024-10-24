@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Tenant Management</title>
+
+    <style>
+        /* Styling the Add New Row button to the right */
+        .addBtn {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            transition: background-color 0.3s ease;
+            float: right;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+
+        .addBtn:hover {
+            background-color: transparent;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        /* Existing styles */
+        .dataCustM {
+            width: 100%;
+            margin: 0 auto 50px;
+            padding: 10px 0 50px;
+        }
+
+        .dataCustM thead {
+            background: #ffc107 !important;
+        }
+
+        .dataCustM .paginate_button {
+            color: #000;
+            padding: 0 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .dataCustM .paginate_button.current {
+            background: #28a745;
+            border-radius: 5px;
+            padding: 4px 10px;
+            color: #fff;
+        }
+
+        .dataCustM div.dataTables_wrapper div.dataTables_paginate {
+            margin: 0;
+            white-space: nowrap;
+            text-align: right;
+            width: 50%;
+            float: right;
+            padding-top: .85em;
+        }
+
+        .dataCustM .table td button.viewBtn {
+            background: #28a745;
+            color: #fff;
+            border: 1px solid #28a745;
+            border-radius: 3px;
+            font-size: 14px;
+            line-height: 24px;
+            padding: 3px 12px;
+        }
+
+        .dataCustM .table td button.viewBtn:hover {
+            background: transparent;
+            color: #28a745;
+        }
+
+        .dataCustM .table td button.deleteBtn {
+            background: #dc3545;
+            color: #fff;
+            border: 1px solid #dc3545;
+            border-radius: 3px;
+            font-size: 14px;
+            line-height: 24px;
+            padding: 3px 12px;
+        }
+
+        .dataCustM .table td button.deleteBtn:hover {
+            background: transparent;
+            color: #dc3545;
+        }
+
+        .dataCustM .table td button.editBtn {
+            background: #FFA500;
+            color: #fff;
+            border: 1px solid #FFA500;
+            border-radius: 3px;
+            font-size: 14px;
+            line-height: 24px;
+            padding: 3px 12px;
+        }
+
+        .dataCustM .table td button.editBtn:hover {
+            background: transparent;
+            color:
+                #FFA500;
+        }
+
+
+        .dataCustM div#example_length {
+            width: 50%;
+            float: left;
+
+        }
+
+        .dataCustM div#example_length select {
+            outline: none;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            padding: 3px 2px;
+        }
+
+        .dataCustM a {
+            text-decoration: none;
+        }
+
+        .dataCustM div#example_info {
+            width: 50%;
+            float: left;
+        }
+
+        .dataCustM input[type="search"] {
+            outline: none;
+            border: 1px solid #060606;
+            border-radius: 3px;
+            padding: 3px 10px;
+        }
+
+        .custumTBal .headingH h1 {
+            font-size: 37px;
+            line-height: 46px;
+            color: #050505;
+            text-align: center;
+            background: #f5e625 !important;
+            padding: 15px 10px;
+            border: 1px solid #050505;
+        }
+
+        .custumTBal .headingH h1 span {
+            flex: none;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .custumTBal .headingH h1 a {
+            color: #060505;
+            text-decoration: none;
+            background-color: transparent;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("./partials/header2.ejs") %>
+        <div class="container" style="width: 100%; max-width: 100%;">
+            <div class="custumTBal">
+                <div class="headingH">
+                    <h1 class="d-flex">
+                        <span>Tenant Details</span>
+                    </h1>
+                </div>
+                <%- include("./partials/messages") %>
+
+                    <div class="dataCustM">
+                        <!-- Add New Row button on the right -->
+                        <button id="redirectBtn" class="addBtn">Add New Tenant</button>
+
+                        <table id="example" class="table table-striped table-bordered"
+                            style="width:100%; margin-bottom: 100%; border-color: #000;">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th>S No.</th>
+                                    <th>Name</th>
+                                    <th>DOB</th>
+                                    <th>Profession</th>
+                                    <th>Room No.</th>
+                                    <th>Join Date</th>
+                                    <th>Rent</th>
+                                    <th>Status</th>
+                                    <th>View</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% let i=1; %> <!-- Counter for serial number -->
+                                    <% for(tenantList of vin) { %>
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                <%= i++ %>
+                                            </td>
+                                            <td>
+                                                <%= tenantList.name %>
+                                            </td>
+                                            <td>
+                                                <%= tenantList.dob %>
+                                            </td>
+                                            <td>
+                                                <%= tenantList.profession %>
+                                            </td>
+                                            <td>
+                                                <%= tenantList.roomNo %>
+                                            </td>
+                                            <td>
+                                                <%= tenantList.joinDate %>
+                                            </td>
+                                            <td>
+                                                <%= tenantList.rent %>
+                                            </td>
+                                            <td>
+                                                <%= tenantList.status %>
+                                            </td>
+                                            <td>
+                                                <a href="/tenant/deatils/<%= tenantList._id %>">
+                                                    <button class="viewBtn">View</button>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="/tenant/edit/<%= tenantList._id %>">
+                                                    <button class="editBtn">Edit</button>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <button onclick="confirmDelete('<%= tenantList._id %>')"
+                                                    class="deleteBtn">Delete</button>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+
+            </div>
+        </div>
+
+        <%- include("./partials/footer.ejs") %>
+
+            <script>
+                $(document).ready(function () {
+                    $('#example').DataTable({
+                        "paging": true,         // Enable pagination
+                        "searching": false,      // Enable search bar
+                        "ordering": true,       // Enable column sorting
+                        "info": true,           // Show table info (e.g., "Showing 1 to 10 of 57 entries")
+                        "pageLength": 5,       // Set default number of rows per page
+                        "lengthMenu": [5, 10, 25, 50, 100] // Options for rows per page
+                    });
+                })
+                document.getElementById('redirectBtn').addEventListener('click', function () {
+                    window.location.href = '/tenant'; // Redirect to add tenant page
+                });
+
+                // Confirm delete function
+                function confirmDelete(id) {
+                    if (confirm("Are you sure you want to delete this tenant?")) {
+                        deleteTenant(id);
+                    }
+                }
+
+                // Delete tenant function
+                function deleteTenant(id) {
+                    $.ajax({
+                        url: '/tenant/delete/' + id, // Passing the tenant ID to the route
+                        type: 'DELETE',
+                        success: function () {
+                            // alert('Tenant deleted successfully!');
+                            location.reload(); // Reload the page after deletion
+                        },
+                        error: function (err) {
+                            alert('Error deleting tenant.');
+                        }
+                    });
+                }
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Tenant Management</title>
+    <meta name="description" content="Our first page">
+    <meta name="keywords" content="html tutorial template">
+
+
+    <style>
+        .custumTBal {
+            width: 80%;
+            margin: 50px auto;
+        }
+
+        .custumTBal .table {
+            width: 100%;
+            margin: -8px auto 0;
+        }
+
+        .custumTBal .table tbody {
+            width: 100%;
+            border: 0 solid black;
+            background-color: white;
+        }
+
+        .custumTBal .headingH h1 {
+            font-size: 37px;
+            line-height: 46px;
+            color: #000;
+            text-align: center;
+            background: #f5e625 !important;
+            padding: 15px 10px;
+            border: 3px solid #d7d2d2;
+        }
+
+        .custumTBal .headingH h1 span {
+            flex: none;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .custumTBal .headingH h1 a {
+            color: #060505;
+            text-decoration: none;
+            background-color: transparent;
+            font-size: 18px;
+        }
+
+        .custumTBal .table td,
+        .custumTBal .table th {
+            padding: 10px;
+            vertical-align: top;
+            border: 1px solid #121416;
+        }
+
+        .custumTBal .table h4 {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 24px;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <%- include("./partials/header2.ejs") %>
+        <div class="custumTBal">
+            <table class="table">
+                <tbody>
+                    <div class="headingH">
+                        <h1 class="d-flex">
+                            <a href="/dashboard">
+                                <i class="fa fa-arrow-left">
+
+                                </i>
+                            </a>
+                            <span>Tenant Details</span>
+                        </h1>
+                    </div>
+                    <tr>
+                        <td>
+                            <h4>Name:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.name%>
+                            </h4>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>DOB:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.dob%>
+                            </h4>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Profession:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.profession%>
+                            </h4>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Room No.:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.roomNo%>
+                            </h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Join Date:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.joinDate%>
+                            </h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Rent:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.rent%>
+                            </h4>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Status:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.status%>
+                            </h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Profile Image:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.profile%>
+                            </h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>ID Proof:</h4>
+                        </td>
+                        <td>
+                            <h4>
+                                <%=att.idProof%>
+                            </h4>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <%- include("./partials/footer.ejs") %>
+</body>
+
+</html>

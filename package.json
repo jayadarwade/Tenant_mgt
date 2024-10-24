@@ -1,0 +1,43 @@
+{
+  "name": "tenant_mgt",
+  "version": "0.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon * app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.2",
+    "ejs": "^3.1.8",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.5",
+    "morgan": "^1.10.0",
+    "node-localstorage": "^2.2.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProfusionVentures/CarNotesIO.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ProfusionVentures/CarNotesIO/issues"
+  },
+  "homepage": "https://github.com/ProfusionVentures/CarNotesIO#readme",
+  "description": ""
+}

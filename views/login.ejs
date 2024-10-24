@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="/css/style.css"> <!-- Assuming you have a CSS file -->
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header,
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    /* Main Content Layout */
+    .main-content {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .banner {
+      /* flex: 1; */
+      background-image: url('/images/banner.jpg');
+      /* Add your banner image here */
+      background-size: cover;
+      background-position: center;
+      min-height: 400px;
+      margin-right: 20px;
+    }
+
+    .login-form-container {
+      /* flex: 1; */
+      max-width: 450px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-right: 20px;
+
+    }
+
+    .login-form-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .login-form-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-form-container button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      .banner {
+        margin: 0 0 20px 0;
+        min-height: 200px;
+      }
+
+      .login-form-container {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Include Header -->
+  <%- include("./partials/header1.ejs") %>
+
+    <div class="main-content">
+      <!-- Side Banner -->
+      <div class="banner">
+        <img src="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*r7yDI0D6mL81w7CiZQDcSg.png" alt="Login Image"
+          class="img-fluid mb-3" style="max-width: 80%; height: auto;">
+      </div>
+
+      <!-- Login Form -->
+      <div class="login-form-container">
+        <h2>Login</h2>
+        <form action="/user/login" method="POST">
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Include Footer -->
+    <%- include("./partials/footer.ejs") %>
+</body>
+
+</html>
