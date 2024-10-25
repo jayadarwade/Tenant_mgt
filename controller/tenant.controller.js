@@ -4,8 +4,6 @@ const Tanant = require("../models/tenant.model");
 
 exports.create = async (req, res) => {
     try {
-        console.log("object 8");
-
         // const userData = await validateToken.validateCustomer(req);
         // let data = req.body;
         // var user = await User.findOne({ _id: req.body.userId });
@@ -28,8 +26,6 @@ exports.create = async (req, res) => {
                 data: VINnumber
             })
         } else {
-            console.log("req.body ", req.body.namw);
-
             let result = await Tanant.create(req.body);
             res.status(200).send({
                 success: true,
@@ -39,8 +35,6 @@ exports.create = async (req, res) => {
         }
     }
     catch (err) {
-        console.log("71Add")
-        console.log(err)
         res.status(500).send({
             success: false,
             message: err.message + "Somethink went wrong",

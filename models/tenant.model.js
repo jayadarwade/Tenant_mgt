@@ -5,6 +5,12 @@ const tenantSchema = new mongoose.Schema({
         type: String
         // required: true,
     },
+    profilePhoto: {
+        type: String
+    },
+    idProof: {
+        type: String
+    },
     dob: {
         type: String,
         default: null,

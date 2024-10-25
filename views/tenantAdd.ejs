@@ -2,6 +2,10 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
     <title>Tenant Management</title>
     <meta name="description" content="Our first page">
     <meta name="keywords" content="html tutorial template">
@@ -133,7 +137,7 @@
 <body>
     <%- include("./partials/header2.ejs") %>
         <div class="custumfrm">
-            <form action="/tenant/add" method="post">
+            <form action="/tenant/add" method="post" enctype="multipart/form-data">
                 <div class="headingH">
                     <h1>
                         <a href="/dashboard">
@@ -155,7 +159,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>DOB:</label>
-                                <input type="date" id="dob" class="form-control" name="dob"
+                                <input type="text" id="dob" class="form-control" name="dob"
                                     placeholder="Enter tenant dob" required>
                             </div>
                         </div>
@@ -173,9 +177,27 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label>Status:</label>
+                                <select class="form-control" id="status" name="status" required>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Upload Profile Photo:</label>
                                 <input type="file" id="profilePhoto" name="profilePhoto"
                                     placeholder="Enter tenant profile photo" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>ID Proof:</label>
+                                <input type="file" id="idProof" name="idProof" placeholder="Enter tenant idProof"
+                                    class="form-control">
                             </div>
                         </div>
                     </div>
@@ -208,25 +230,8 @@
                                     placeholder="Enter room rent" required min="0">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>ID Proof:</label>
-                                <input type="file" id="idProof" name="idProof" placeholder="Enter tenant idProof"
-                                    class="form-control">
-                            </div>
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Status:</label>
-                                <select class="form-control" id="status" name="status" required>
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <!-- Submit Button -->
@@ -246,20 +251,23 @@
         <script>
             $(function () {
                 // Initialize datepickers
+                const today = new Date();
+                const defaultDOB = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+                // Initialize DOB datepicker with default date and validation
                 $("#dob").datepicker({
                     changeMonth: true,
                     changeYear: true,
                     yearRange: "1900:2024",
                     dateFormat: "yy-mm-dd",
+                    defaultDate: defaultDOB,
                     onSelect: function () {
                         validateDOB();
                     }
                 });
-
-                $("#joinDate").datepicker({
-                    minDate: 0, // Current date and forward
-                    dateFormat: "yy-mm-dd"
-                });
+                // $("#joinDate").datepicker({
+                //     minDate: 0, // Current date and forward
+                //     dateFormat: "yy-mm-dd"
+                // });
 
                 // Function to validate DOB for age 18+
                 function validateDOB() {

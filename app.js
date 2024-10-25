@@ -1,6 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose");
-mongoose.set('strictQuery', false);
+// const mongoose = require("mongoose");
+// mongoose.set('strictQuery', false);
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
@@ -16,18 +16,18 @@ require("dotenv").config();
 // Passport Config
 require("./config/passport")(passport);
 
-// .env Config
-require("dotenv").config();
-
 // Connect to MongoDB
+const mongoose = require('mongoose');
+
 mongoose
-  .connect(process.env.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.mongoURI, { })
   .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log("MongoDB", err));
+  .catch((err) => console.log("MongoDB connection error:", err));
 
 // EJS
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.set("view engine", "ejs");
 

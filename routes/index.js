@@ -17,14 +17,14 @@ router.get("/", forwardAuthenticated, (req, res) => res.render("login"));
 router.get("/dashboard", ensureAuthenticated, async (req, res) => {
   // Set the default page and limit values
   const page = parseInt(req.query.page) || 1; // Get current page from query params, default to 1
-  const limit = parseInt(req.query.limit) || 5; // Set limit of records per page
+  const limit = parseInt(req.query.limit) || 10; // Set limit of records per page
 
   try {
     // Calculate the number of documents to skip for pagination
     const skip = (page - 1) * limit;
 
     // Find tenants with pagination
-    const tenants = await Tenant.find().skip(skip).limit(limit);
+    const tenants = await Tenant.find().sort({ createdDate: -1 }).skip(skip).limit(limit);
 
     // Count total documents
     const totalTenants = await Tenant.countDocuments();
@@ -36,6 +36,40 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
       vin: tenants,  // Pass the paginated tenants
       currentPage: page,  // Pass the current page
       totalPages: totalPages,  // Pass total pages
+    });
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
+});
+
+router.get("/dashboard/data", ensureAuthenticated, async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  try {
+    const tenants = await Tenant.find().sort({ createdDate: -1 }).skip(skip).limit(limit);
+
+    const totalTenants = await Tenant.countDocuments();
+    const formattedData = tenants.map((tenant, index) => ({
+      sNo: skip + index + 1,
+      name: tenant.name,
+      dob: tenant.dob,
+      profession: tenant.profession,
+      roomNo: tenant.roomNo,
+      joinDate: tenant.joinDate,
+      rent: tenant.rent,
+      status: tenant.status,
+      view: `<a href="/tenant/details/${tenant._id}"><button class="viewBtn" style="text-align: center;">View</button></a>`,
+      edit: `<a href="/tenant/edit/${tenant._id}"><button class="editBtn">Edit</button></a>`,
+      delete: `<button onclick="confirmDelete('${tenant._id}')" class="deleteBtn">Delete</button>`
+    }));
+
+    res.json({
+      draw: req.query.draw,  // For DataTables to track request counts
+      recordsTotal: totalTenants,
+      recordsFiltered: totalTenants,
+      data: formattedData
     });
   } catch (err) {
     res.status(500).send('Server Error');

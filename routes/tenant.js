@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-
+const upload = require(".././config/upload");
 // Load User model
 const User = require("../models/User");
 const Tenant = require("../models/tenant.model");
@@ -26,7 +26,11 @@ router.get("/", (req, res) => {
 });
 
 // Add 
-router.post("/add", async (req, res) => {
+router.post("/add", upload.uploadImage, async (req, res) => {
+    if (req.files.length>0) {
+        req.body.profilePhoto = req.files.profilePhoto[0].filename;
+        req.body.idProof = req.files.idProof[0].filename;
+    }
     if (req.body.id) {
         await Tenant.updateOne({ _id: req.body.id }, req.body);
 
@@ -40,7 +44,7 @@ router.post("/add", async (req, res) => {
     return res.redirect('/dashboard')
 });
 
-router.get("/deatils/:id", async (req, res) => {
+router.get("/details/:id", async (req, res) => {
     let id = req.params.id;
     res.render("vinDetails.ejs", {
         att: await Tenant.findOne({ _id: id }),

@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Tenant Management</title>
     <meta name="description" content="Our first page">
     <meta name="keywords" content="html tutorial template">
@@ -50,8 +53,9 @@
         .custumTBal .table td,
         .custumTBal .table th {
             padding: 10px;
-            vertical-align: top;
+            vertical-align: middle;
             border: 1px solid #121416;
+            width: 20%;
         }
 
         .custumTBal .table h4 {
@@ -59,6 +63,69 @@
             font-weight: 500;
             line-height: 24px;
             margin: 0;
+        }
+
+        img {
+            width: 10%;
+        }
+
+        .thumbnail {
+            width: 200px;
+            /* Set your thumbnail size */
+            transition: transform 0.3s;
+            /* Smooth transition */
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.2);
+            /* Enlarge image on hover */
+        }
+
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.9);
+            /* Black w/ opacity */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            /* Width of the enlarged image */
+            max-width: 700px;
+            /* Max width */
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 
@@ -159,7 +226,8 @@
                         </td>
                         <td>
                             <h4>
-                                <%=att.profile%>
+                                <img src="http://localhost:3050/<%=att.profilePhoto%>" alt="Image" class="thumbnail"
+                                    id="thumbnail">
                             </h4>
                         </td>
                     </tr>
@@ -169,7 +237,8 @@
                         </td>
                         <td>
                             <h4>
-                                <%=att.idProof%>
+                                <img src="http://localhost:3050/<%=att.idProof%>" alt="Image" class="thumbnail"
+                                    id="thumbnail">
                             </h4>
                         </td>
                     </tr>
