@@ -4,7 +4,7 @@ require("dotenv").config();
 mongoose.set('strictQuery', false);
 
 mongoose
-    .connect(process.env.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(process.env.mongoURI, {})
     .then(() => console.log("MongoDB Connected"))
     .catch((err) => console.log("MongoDB", err));
 
