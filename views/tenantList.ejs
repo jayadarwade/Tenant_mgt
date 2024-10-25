@@ -177,30 +177,30 @@
                         <span>Tenant Details</span>
                     </h1>
                 </div>
-                <%- include("./partials/messages") %>
-                    <div class="dataCustM">
-                        <!-- Add New Row button on the right -->
-                        <button id="redirectBtn" class="addBtn">Add New Tenant</button>
+                <!-- <%- include("./partials/messages") %> -->
+                <div class="dataCustM">
+                    <!-- Add New Row button on the right -->
+                    <button id="redirectBtn" class="addBtn">Add New Tenant</button>
 
-                        <table id="example" class="table table-striped table-bordered"
-                            style="width:100%; margin-bottom: 100%; border-color: #000; text-align: center;">
-                            <thead>
-                                <tr>
-                                    <th>S No.</th>
-                                    <th>Name</th>
-                                    <th>DOB</th>
-                                    <th>Profession</th>
-                                    <th>Room No.</th>
-                                    <th>Join Date</th>
-                                    <th>Rent</th>
-                                    <th>Status</th>
-                                    <th>View</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                    <table id="example" class="table table-striped table-bordered"
+                        style="width:100%; margin-bottom: 100%; border-color: #000; text-align: center;">
+                        <thead>
+                            <tr>
+                                <th>S No.</th>
+                                <th>Name</th>
+                                <th>DOB</th>
+                                <th>Profession</th>
+                                <th>Room No.</th>
+                                <th>Join Date</th>
+                                <th>Rent</th>
+                                <th>Status</th>
+                                <th>View</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
 
             </div>
         </div>
@@ -210,6 +210,7 @@
             <script>
                 $(document).ready(function () {
                     $('#example').DataTable({
+                        "searching": false,// Enable search bar
                         "processing": true,
                         "serverSide": true,
                         "paging": true,

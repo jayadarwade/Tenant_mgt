@@ -53,13 +53,13 @@ router.get("/dashboard/data", ensureAuthenticated, async (req, res) => {
     const totalTenants = await Tenant.countDocuments();
     const formattedData = tenants.map((tenant, index) => ({
       sNo: skip + index + 1,
-      name: tenant.name,
+      name: tenant.name.charAt(0).toUpperCase() + tenant.name.slice(1).toLowerCase(),
       dob: tenant.dob,
       profession: tenant.profession,
       roomNo: tenant.roomNo,
       joinDate: tenant.joinDate,
       rent: tenant.rent,
-      status: tenant.status,
+      status: tenant.status.charAt(0).toUpperCase() + tenant.status.slice(1).toLowerCase(),
       view: `<a href="/tenant/details/${tenant._id}"><button class="viewBtn" style="text-align: center;">View</button></a>`,
       edit: `<a href="/tenant/edit/${tenant._id}"><button class="editBtn">Edit</button></a>`,
       delete: `<button onclick="confirmDelete('${tenant._id}')" class="deleteBtn">Delete</button>`

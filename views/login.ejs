@@ -146,6 +146,20 @@
 
     <!-- Include Footer -->
     <%- include("./partials/footer.ejs") %>
+      <script>
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const toggleIcon = document.querySelector(".toggle-password");
+      
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleIcon.textContent = "🙈"; // Change to eye-off icon
+      } else {
+        passwordField.type = "password";
+        toggleIcon.textContent = "👁️"; // Change back to eye icon
+      }
+    }
+  </script>
 </body>
 
 </html>

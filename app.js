@@ -69,11 +69,6 @@ app.use("/user", require("./routes/login.js"));
 app.use("/api/user", require("./routes/apis/user.router.js"));
 app.use("/api/tenant", require("./routes/apis/tenant.router.js"));
 
-// catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   next(createError(404));
-// });
-
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
