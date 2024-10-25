@@ -27,7 +27,7 @@ router.get("/", (req, res) => {
 
 // Add 
 router.post("/add", upload.uploadImage, async (req, res) => {
-    if (req.files.length>0) {
+    if (req.files.length > 0) {
         req.body.profilePhoto = req.files.profilePhoto[0].filename;
         req.body.idProof = req.files.idProof[0].filename;
     }

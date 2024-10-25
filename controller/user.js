@@ -98,6 +98,7 @@ exports.login = async (req, res) => {
         }
     }
     catch (err) {
+        console.log(err);
         res.status(500).send({
             success: false,
             message: err.message + "Sorry somethink went wrong!",
