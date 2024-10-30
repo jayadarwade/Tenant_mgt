@@ -6,7 +6,7 @@ const upload = require(".././config/upload");
 // Load User model
 const User = require("../models/User");
 const Tenant = require("../models/tenant.model");
-
+const Rent = require("../models/rent.model");
 const { forwardAuthenticated } = require("../config/auth");
 
 // const https = require("https");
@@ -48,9 +48,9 @@ router.get("/details/:id", async (req, res) => {
     let id = req.params.id;
     res.render("vinDetails.ejs", {
         att: await Tenant.findOne({ _id: id }),
+        baseUrl: process.env.baseUrl
     });
 });
-
 
 router.get("/edit/:id", async (req, res) => {
     let id = req.params.id;
@@ -70,6 +70,27 @@ router.delete("/delete/:id", async (req, res) => {
     // res.render("vinEdit.ejs", {
     //     att: await Tenant.findOne({ _id: id }),
     // });
+});
+
+router.get("/rent/:tenantId", async (req, res) => {
+    const tenantId = req.params.tenantId;
+
+    // Get the last rent payment month for the tenant
+    let lastPayMonth = await Rent.findOne({ tenantId }).sort({ createdDate: -1 });
+    let month = lastPayMonth ? lastPayMonth.rentPayMonth : null;
+
+    // Render the `rent.ejs` view with the fetched data
+    res.render("rent.ejs", {
+        data: await Rent.find({ tenantId }),
+        month: month,
+        tenantData: await Tenant.findOne({ _id: tenantId }),
+    });
+});
+
+
+router.post("/addRent", async (req, res) => {
+    await Rent.create(req.body);
+    res.redirect(`/tenant/rent/${req.body.tenantId}`);
 });
 
 module.exports = router;

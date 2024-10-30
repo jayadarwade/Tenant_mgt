@@ -134,6 +134,7 @@
 <body>
     <%- include("./partials/header2.ejs") %>
         <div class="custumTBal">
+            
             <table class="table">
                 <tbody>
                     <div class="headingH">
@@ -226,7 +227,7 @@
                         </td>
                         <td>
                             <h4>
-                                <img src="http://localhost:3050/<%=att.profilePhoto%>" alt="Image" class="thumbnail"
+                                <img src="<%= baseUrl %><%=att.profilePhoto%>" alt="Image" class="thumbnail"
                                     id="thumbnail">
                             </h4>
                         </td>

@@ -4,7 +4,7 @@ const User =require("../models/User");
 exports.validateCustomer = async (req) => {
     const userToken = req.headers.authorization;
     const token = userToken.split(" ");
-    const decoded = jwt.verify(token[1], process.env.ACCESS_TOKEN_SECRET);
+    const decoded = jwt.verify(token[1], process.env.ACCESS_TOKEN_SECRET,);
 
     //Check if User exists with the same number
     let user = await User.findOne({email: decoded.user});

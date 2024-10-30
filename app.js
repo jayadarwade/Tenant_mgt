@@ -7,9 +7,18 @@ const session = require("express-session");
 const bodyparser = require("body-parser");
 const path = require('path');
 const app = express();
-
+const cors = require("cors");
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Authorization", "token");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  if (req.method === 'OPTIONS') {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next();
+});
 // .env Config
 require("dotenv").config();
 
@@ -20,7 +29,7 @@ require("./config/passport")(passport);
 const mongoose = require('mongoose');
 
 mongoose
-  .connect(process.env.mongoURI, { })
+  .connect(process.env.mongoURI, {})
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 

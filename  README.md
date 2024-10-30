@@ -23,6 +23,8 @@ To get started with this project, follow these steps:
    ACCESS_TOKEN_SECRET
    REFRESH_TOKEN_SECRET
 
+4. baseUrl ='http://localhost:3050/'
+
 ## BEFORE INSTALL NEED TO MAKE CHANGES IN .env FILE 
 
 - Please use MongoDb Compass or any other MongoDb tool to use mongoose

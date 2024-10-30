@@ -62,14 +62,15 @@ router.get("/dashboard/data", ensureAuthenticated, async (req, res) => {
       status: tenant.status.charAt(0).toUpperCase() + tenant.status.slice(1).toLowerCase(),
       view: `<a href="/tenant/details/${tenant._id}"><button class="viewBtn" style="text-align: center;">View</button></a>`,
       edit: `<a href="/tenant/edit/${tenant._id}"><button class="editBtn">Edit</button></a>`,
-      delete: `<button onclick="confirmDelete('${tenant._id}')" class="deleteBtn">Delete</button>`
+      delete: `<button onclick="confirmDelete('${tenant._id}')" class="deleteBtn">Delete</button>`,
+      rentHistory: `<a href = "/tenant/rent/${tenant._id}"><button class="viewBtn">Rent</button></a>`
     }));
 
     res.json({
       draw: req.query.draw,  // For DataTables to track request counts
       recordsTotal: totalTenants,
       recordsFiltered: totalTenants,
-      data: formattedData
+      data: formattedData,
     });
   } catch (err) {
     res.status(500).send('Server Error');

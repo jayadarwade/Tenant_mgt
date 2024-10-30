@@ -52,7 +52,7 @@ exports.create = async (req, res) => {
 let accessTokens = [];
 function generateAccessToken(user) {
     const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "30m", }
+        { expiresIn: "1y", }
     );
     accessTokens.push(accessToken);
     return accessToken;
@@ -62,7 +62,7 @@ function generateAccessToken(user) {
 let refreshTokens = [];
 function generateRefreshToken(user) {
     const refreshToken = jwt.sign(user,process.env.REFRESH_TOKEN_SECRET,
-        { expiresIn: "1h", }
+        { expiresIn: "2y", }
     );
     refreshTokens.push(refreshToken);
     return refreshToken;
