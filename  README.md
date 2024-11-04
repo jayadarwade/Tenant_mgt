@@ -14,7 +14,7 @@ To get started with this project, follow these steps:
 ## AFTER INSTALL NEED TO MAKE CHANGES IN .env FILE
 
 1. SERVER_URL
-   PORT=http://YourHostName:PORT
+   PORT= 3050
 
 2. DATABASE
    mongoURI

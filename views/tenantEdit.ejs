@@ -172,23 +172,40 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label>Phone Number:</label>
+                                <input type="text" id="phoneNumber" class="form-control" value="<%=att.phonenumber%>"
+                                    name="phoneNumber" placeholder="Enter tenant name" required>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>DOB:</label>
                                 <input type="text" id="dob" class="form-control" name="dob" value="<%=att.dob%>"
                                     placeholder="Enter tenant dob" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Profession:</label>
                                 <select class="form-control" id="profession" name="profession" required>
-                                    <option value="Student" <%=att.profession==='Student' ? 'selected' : '' %>>Student
+                                    <option value="student" <%=att.profession==='student' ? 'selected' : '' %>>Student
                                     </option>
-                                    <option value="Employee" <%=att.profession==='Employee' ? 'selected' : '' %>
+                                    <option value="employee" <%=att.profession==='employee' ? 'selected' : '' %>
                                         >Employee</option>
                                 </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">                      
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Upload Profile Photo:</label>
+                                <input type="file" id="profilePhoto" name="profilePhoto" value="<%=att.profile%>"
+                                    class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -206,15 +223,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>ID Proof:</label>
-                                <input type="file" id="idProof" name="idProof" class="form-control"
-                                    value="<%=att.idProof%>">
+                                <input type="file" id="idProof" name="idProof" class="form-control" value="<%=att.idProof%>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Upload Profile Photo:</label>
-                                <input type="file" id="profilePhoto" name="profilePhoto" value="<%=att.profile%>"
-                                    class="form-control">
+                                <label>Address Proof:</label>
+                                <input type="file" id="addressProof" name="addressProof" value="<%=att.addressProof%>" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -236,6 +251,25 @@
                                 <label>Join Date:</label>
                                 <input type="date" id="joinDate" class="form-control" value="<%=att.joinDate%>"
                                     name="joinDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Deposite Amount:</label>
+                                <input type="number" id="depositeAmount" class="form-control" name="depositeAmount"
+                                    value="<%=att.depositeAmount%>" placeholder="Enter deposite amount" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Deposite Status:</label>
+                                <select class="form-control" id="depositeStatus" name="depositeStatus"
+                                    placeholder="Enter deposite status" required>
+                                    <option value="paid" <%=att.status==='paid' ? 'selected' : '' %>>Paid</option>
+                                    <option value="unpaid" <%=att.status==='unpaid' ? 'selected' : '' %>>Unpaid</option>
+                                </select>
                             </div>
                         </div>
                     </div>

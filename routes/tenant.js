@@ -30,6 +30,7 @@ router.post("/add", upload.uploadImage, async (req, res) => {
     if (req.files && req.files.profilePhoto && req.files.idProof) {
         req.body.profilePhoto = req.files.profilePhoto[0].filename;
         req.body.idProof = req.files.idProof[0].filename;
+        req.body.addressProof = req.files.addressProof[0].filename;
     }
     if (req.body.id) {
         await Tenant.updateOne({ _id: req.body.id }, req.body);
@@ -46,28 +47,28 @@ router.post("/add", upload.uploadImage, async (req, res) => {
 
 router.get("/details/:id", async (req, res) => {
     let id = req.params.id;
-    res.render("vinDetails.ejs", {
-        att: await Tenant.findOne({ _id: id }),
+    res.render("tenantDetails.ejs", {
+        att: await Tenant.findOne({ _id: id, deletedDate:null }),
         baseUrl: process.env.baseUrl
     });
 });
 
 router.get("/edit/:id", async (req, res) => {
     let id = req.params.id;
-    res.render("vinEdit.ejs", {
-        att: await Tenant.findOne({ _id: id }),
+    res.render("tenantEdit.ejs", {
+        att: await Tenant.findOne({ _id: id, deletedDate:null }),
     });
 });
 
 router.delete("/delete/:id", async (req, res) => {
     let id = req.params.id;
-    await Tenant.deleteOne({ _id: id });
+    await Tenant.updateOne({ _id: id }, { $set: { deletedDate: new Date() } });
     return res.status(200).send({
         success: true,
         messagge: "",
         data: null
     })
-    // res.render("vinEdit.ejs", {
+    // res.render("tenantEdit.ejs", {
     //     att: await Tenant.findOne({ _id: id }),
     // });
 });

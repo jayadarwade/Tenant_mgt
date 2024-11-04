@@ -24,7 +24,7 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
     const skip = (page - 1) * limit;
 
     // Find tenants with pagination
-    const tenants = await Tenant.find().sort({ createdDate: -1 }).skip(skip).limit(limit);
+    const tenants = await Tenant.find({ deletedDate: null }).sort({ createdDate: -1 }).skip(skip).limit(limit);
 
     // Count total documents
     const totalTenants = await Tenant.countDocuments();
@@ -48,7 +48,7 @@ router.get("/dashboard/data", ensureAuthenticated, async (req, res) => {
   const skip = (page - 1) * limit;
 
   try {
-    const tenants = await Tenant.find().sort({ createdDate: -1 }).skip(skip).limit(limit);
+    const tenants = await Tenant.find({ deletedDate: null }).sort({ createdDate: -1 }).skip(skip).limit(limit);
 
     const totalTenants = await Tenant.countDocuments();
     const formattedData = tenants.map((tenant, index) => ({

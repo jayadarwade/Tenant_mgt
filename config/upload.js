@@ -12,6 +12,9 @@ let storage = multer.diskStorage({
         if (_file.fieldname === "idProof") {
             cb(null, localFolderPath);
         }
+        if (_file.fieldname === "addressProof") {
+            cb(null, localFolderPath);
+        }
     },
     filename: function (_req, file, cb) {
         // cb(null, Date.now() + file.originalname);
@@ -21,5 +24,5 @@ let storage = multer.diskStorage({
 });
 
 exports.uploadImage = multer({ storage: storage }).fields(
-    [{ name: "profilePhoto", maxCount: 1 }, { name: "idProof", maxCount: 1 }]
+    [{ name: "profilePhoto", maxCount: 1 }, { name: "idProof", maxCount: 1 }, { name: "addressProof", maxCount: 1 }]
 );

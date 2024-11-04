@@ -11,12 +11,17 @@ const tenantSchema = new mongoose.Schema({
     idProof: {
         type: String
     },
+    addressProof: {
+        type: String
+    },
     dob: {
         type: String,
         default: null,
     },
     profession: {
-        type: String
+        type: String,
+        enum: ['student', 'employee'],
+        default: "student"
     },
     joinDate: {
         type: String,
@@ -28,13 +33,25 @@ const tenantSchema = new mongoose.Schema({
     roomNo: {
         type: String
     },
+    depositeAmount: {
+        type: String
+    },
+    depositeStatus: {
+        type: String,
+        enum: ['paid', 'unpaid'],
+        default: "paid"
+    },
+    phoneNumber: {
+        type: String
+    },
     status: {
         type: String,
+        enum: ['active', 'inactive'],
         default: "active"
     },
-    isDeleted: {
-        type: Boolean,
-        default: false,
+    deletedDate: {
+        type: Date,
+        default: null
     },
     createdDate: {
         type: Date,
