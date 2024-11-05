@@ -148,9 +148,12 @@
                             <div class="form-group">
                                 <div>
                                     <%- include("./partials/messages") %>
+                                    <label>Name:</label>
+                                    <input type="test" name="name" class="form-control" value="<%= tenantData.name%>"
+                                        disabled required />
                                         <label>Room No:</label>
                                         <input type="test" name="roomNo" class="form-control"
-                                            placeholder="Enter room number" value="<%= tenantData.roomNo%>" required />
+                                            placeholder="Enter room number" value="<%= tenantData.roomNo%>" disabled required />
                                         <label>Paid Amount:</label>
                                         <input type="number" name="paidAmount" class="form-control"
                                             placeholder="Enter paid amount" value="<%= tenantData.rent%>" required />
@@ -172,8 +175,8 @@
                                         <label>Payment Mode:</label>
                                         <select class="form-control" id="paymentMode" name="paymentMode"
                                             placeholder="Enter Payment Mode" required>
-                                            <option value="cash">Cash</option>
-                                            <option value="online">Online</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Online">Online</option>
                                         </select>
 
                                         <label>Payment Status:</label>
@@ -205,6 +208,7 @@
                 <thead>
                     <tr>
                         <th>S No.</th>
+                        <th>Name.</th>
                         <th>Room No.</th>
                         <th>Paid Amount</th>
                         <th>Month</th>
@@ -222,7 +226,10 @@
                                     <%= i++ %>
                                 </td>
                                 <td>
-                                    <%=details.roomNo%>
+                                    <%=tenantData.name%>
+                                </td>
+                                <td>
+                                    <%=tenantData.roomNo%> 
                                 </td>
                                 <td>
                                     <%=details.paidAmount%>

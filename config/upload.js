@@ -3,6 +3,9 @@ const multer = require('multer');
 const path = require('path');
 const appRoot = require('app-root-path');
 const localFolderPath = appRoot.path + '/uploads'
+if (!fs.existsSync(localFolderPath)) {
+    fs.mkdirSync(localFolderPath, { recursive: true });
+}
 let storage = multer.diskStorage({
     destination: function (_req, _file, cb) {
         if (_file.fieldname === "profilePhoto") {
