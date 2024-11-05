@@ -63,7 +63,7 @@ router.get("/dashboard/data", ensureAuthenticated, async (req, res) => {
       view: `<a href="/tenant/details/${tenant._id}"><button class="viewBtn" style="text-align: center;">View</button></a>`,
       edit: `<a href="/tenant/edit/${tenant._id}"><button class="editBtn">Edit</button></a>`,
       delete: `<button onclick="confirmDelete('${tenant._id}')" class="deleteBtn">Delete</button>`,
-      rentHistory: `<a href = "/tenant/rent/${tenant._id}"><button class="viewBtn">Rent</button></a>`
+      rentHistory: `<a href = "/tenant/rent/${tenant._id}"><button class="rentHistoryBtn">Rent</button></a>`
     }));
 
     res.json({
