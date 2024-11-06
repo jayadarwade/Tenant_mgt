@@ -1,24 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const passport = require("passport");
 const upload = require(".././config/upload");
-// Load User model
-const User = require("../models/User");
 const Tenant = require("../models/tenant.model");
 const Rent = require("../models/rent.model");
-const { forwardAuthenticated } = require("../config/auth");
-
-// const https = require("https");
-// const passport = require("passport");
-// const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
-
-
-// router.get("/", forwardAuthenticated, (req, res) => res.render(passport.authenticate("local", {
-//     successRedirect: "/dashboard",
-//     failureRedirect: "/login",
-//     failureFlash: true,
-// })(req, res)));
 
 //Add Screen
 router.get("/", (req, res) => {

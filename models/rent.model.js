@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const rentSchema = new mongoose.Schema({
     tenantId: {
         type: String
-        // required: true,
     },
     note: {
         type: String

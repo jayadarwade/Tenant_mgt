@@ -16,19 +16,7 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
-  },
-  // isDeleted: {
-  //   type: Boolean,
-  //   default: false,
-  // },
-  // createdDate: {
-  //   type: Date,
-  //   default: Date.now,
-  // },
-  // updatedDate: {
-  //   type: Date,
-  //   default: Date.now,
-  // },
+  }
 });
 
 const User = mongoose.model("User", UserSchema);

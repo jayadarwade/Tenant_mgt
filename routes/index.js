@@ -3,16 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 const Tenant = require("../models/tenant.model");
 
-
-// Welcome Page
 router.get("/", forwardAuthenticated, (req, res) => res.render("login"));
-
-// Dashboard
-// router.get("/dashboard", ensureAuthenticated,async (req, res) =>
-//   res.render("tenantList.ejs", {
-//     vin: await Tenant.find()
-//   })
-// );
 
 router.get("/dashboard", ensureAuthenticated, async (req, res) => {
   // Set the default page and limit values
@@ -27,7 +18,7 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
     const tenants = await Tenant.find({ deletedDate: null }).sort({ createdDate: -1 }).skip(skip).limit(limit);
 
     // Count total documents
-    const totalTenants = await Tenant.countDocuments();
+    const totalTenants = await Tenant.countDocuments({ deletedDate: null });
 
     // Calculate total number of pages
     const totalPages = Math.ceil(totalTenants / limit);
@@ -50,7 +41,7 @@ router.get("/dashboard/data", ensureAuthenticated, async (req, res) => {
   try {
     const tenants = await Tenant.find({ deletedDate: null }).sort({ createdDate: -1 }).skip(skip).limit(limit);
 
-    const totalTenants = await Tenant.countDocuments();
+    const totalTenants = await Tenant.countDocuments({ deletedDate: null });
     const formattedData = tenants.map((tenant, index) => ({
       sNo: skip + index + 1,
       name: tenant.name.charAt(0).toUpperCase() + tenant.name.slice(1).toLowerCase(),

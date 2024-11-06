@@ -1,12 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 const passport = require("passport");
 var LocalStorage = require('node-localstorage').LocalStorage;
 localStorage = new LocalStorage('./scratch');
-// Load User model
-const User = require("../models/User");
-const Tenant = require("../models/tenant.model");
+
 const { forwardAuthenticated } = require("../config/auth");
 
 // Login Page

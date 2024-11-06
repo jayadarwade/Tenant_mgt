@@ -1,6 +1,4 @@
 const express = require("express");
-// const mongoose = require("mongoose");
-// mongoose.set('strictQuery', false);
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
@@ -70,7 +68,6 @@ app.use(function (req, res, next) {
 
 // Routes
 app.use("/", require("./routes/index.js"));
-// app.use("/login", require("./routes/login.js"));
 app.use("/tenant", require("./routes/tenant.js"));
 app.use("/user", require("./routes/login.js"));
 
